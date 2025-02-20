@@ -1,9 +1,10 @@
-#define TRIG_PIN 9
-#define ECHO_PIN 10
+#define TRIG_PIN 6
+#define ECHO_PIN 7
 
 void setupUltrasonic() {
     pinMode(TRIG_PIN, OUTPUT);
     pinMode(ECHO_PIN, INPUT);
+    Serial.begin(9000);
 }
 
 long readUltrasonic() {
@@ -15,5 +16,6 @@ long readUltrasonic() {
 
     long duration = pulseIn(ECHO_PIN, HIGH);
     long distance = duration * 0.034 / 2;  // Convert to cm
+    Serial.println(distance);
     return distance;
 }
