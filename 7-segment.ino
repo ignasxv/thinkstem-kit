@@ -1,8 +1,3 @@
-// Segment pins 
-const int segmentPins[7] = {8, 9, 12, 11, 10, 7, 6}; // A, B, C, D, E, F, G
-// segment labels
-const char segmentLabels[7] = {'a', 'b', 'c', 'd', 'e', 'f','g'};
-
 // Digit segment map (a-b-c-d-e-f-g), common cathode assumed
 const byte digitSegments[10][7] = {
     {1, 1, 1, 1, 1, 1, 0}, // 0
@@ -78,4 +73,17 @@ void displaySegment(char c) {
 
   }
 
+void segmentCount(int from, int to, int delayTime) {
+    for (int i = from; i <= to; i++) {
+      displayDigit(i);
+      delay(delayTime);
+    }
+}
+  
+void segmentCount() {
+    segmentCount(0, 9, 1000);
+}
 
+void segmentCount(int delayTime) {
+    segmentCount(0, 9, delayTime);
+}
