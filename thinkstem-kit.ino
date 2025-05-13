@@ -21,7 +21,9 @@ void setup()
 
 void loop(){
     // Serial.println(readDistanceCM()); // Print the distance to the serial monitor
-    readDistanceCM();
+    long distance = readDistanceCM();
+    Serial.println(distance); // Print the distance to the serial monitor
 
+    
 }
 

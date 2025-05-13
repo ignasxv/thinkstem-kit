@@ -21,7 +21,7 @@ void sonarSetup(int tPin, int ePin) {
  * @return Distance in cm, or -1 if no echo received within timeout.
  */
 
-long readDistanceCM() {
+long readDistanceCM(int refreshRate) {
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
   digitalWrite(trigPin, HIGH);
@@ -30,6 +30,20 @@ long readDistanceCM() {
   
   long duration = pulseIn(echoPin, HIGH);
   long distance = duration * 0.034 / 2;  // Convert to cm
-  Serial.println(distance);
+  delay(refreshRate);
+  if (distance > 70) {
+    return 0;
+  }
   return distance;
+}
+
+/**
+ * readDistanceCM()
+ *   Wrapper function that calls readDistanceCM with a default refresh rate.
+ *
+ * @return Distance in cm, or -1 if no echo received within timeout.
+ */
+long readDistanceCM() {
+  // Use a default refresh rate of 100ms
+  return readDistanceCM(20);
 }
