@@ -20,26 +20,16 @@ void sonarSetup(int tPin, int ePin) {
  *
  * @return Distance in cm, or -1 if no echo received within timeout.
  */
-long readDistanceCM() {
-  if (trigPin < 0 || echoPin < 0) {
-    // Pins not initialized
-    return -1;
-  }
 
-  // Trigger a 10µs HIGH pulse
+long readDistanceCM() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
-
-  // Measure echo pulse duration, timeout after 30 ms
-  long duration = pulseIn(echoPin, HIGH, 30000);
-  if (duration <= 0) {
-    // no echo (out of range or timeout)
-    return -1;
-  }
-
-  // Convert to distance:
-  // Sound speed ≈ 343 m/s → 29.1 µs per cm round-trip
-  long distanceCm = duration / 29.1 / 2;
-  return distanceCm;
+  
+  long duration = pulseIn(echoPin, HIGH);
+  long distance = duration * 0.034 / 2;  // Convert to cm
+  Serial.println(distance);
+  return distance;
 }

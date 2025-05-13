@@ -1,5 +1,5 @@
 {
-    "port": "/dev/ttyACM0",
     "board": "arduino:avr:uno",
+    "port": "/dev/ttyACM0",
     "sketch": "thinkstem-kit.ino"
 }

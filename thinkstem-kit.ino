@@ -20,16 +20,8 @@ void setup()
 }
 
 void loop(){
-    Serial.println(readDistanceCM()); // Print the distance to the serial monitor
-
-   for(int i=10; i > 0; i--){
-    displayDigit(i); // Display the digit on the 7-segment display
-    buzz(10);
-    delay( 200 ); // Wait for a reasonable time based on distance
-    unbuzz(); // Turn off the buzzer
-    delay( 200) ; // Wait for a reasonable time based on distance
-    Serial.println(readDistanceCM()); // Print the distance to the serial monitor
-   }
+    // Serial.println(readDistanceCM()); // Print the distance to the serial monitor
+    readDistanceCM();
 
 }
 
